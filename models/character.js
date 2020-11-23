@@ -1,15 +1,19 @@
 module.exports = (sequelize, DataTypes) => {
-    const Log = sequelize.define('log', {
-        description: {
+    const Character = sequelize.define('log', {
+        name: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        definition: {
+        age: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        result: {
-            type: DataTypes.STRING,
+        race: {
+            type: DataTypes.ENUM("Human", "High Elf", "Dark Elf", ""),
+            allowNull: false
+        },
+        gender: {
+            type: DataTypes.ENUM("Male", "Female", "Nonbinary", "Other"),
             allowNull: false
         },
         owner_id: {
