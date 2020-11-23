@@ -14,6 +14,13 @@ app.use(express.json());
 app.use('/user', user);
 app.use('/character', character);
 
-app.listen(3000, () => {
-    console.log('App is listening on port 3000.');
+db.authenticate()
+.then(() => db.sync()) // => {force,ture}
+.then(() => {
+    app.listen(process.env.PORT, () => console.log(`[Server: ] App is listing on Port ${process.env.PORT}`));
+
+})
+.catch((err) =>{
+    console.log("[server:] Crashed!");
+    console.error(err);
 })
