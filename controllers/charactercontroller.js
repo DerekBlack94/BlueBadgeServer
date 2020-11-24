@@ -3,8 +3,14 @@ let router = express.Router();
 let validateSession = require('../middleware/validate-session');
 const Character = require('../db').import('../models/character');
 
+router.get('/practice', function(req, res){
+    res.send('message')
+})
+
+//uncomment validateSession when that file is complete & user tokens are set up
+
 //*CHARACTER CREATE
-router.post('/create', validateSession, (req, res) => {
+router.post('/create', /*validateSession,*/ (req, res) => {
     const characterCreate = {
         project_name: req.body.character.project_name,
         name: req.body.character.name,
@@ -13,7 +19,8 @@ router.post('/create', validateSession, (req, res) => {
         gender: req.body.character.gender,
         character_description: req.body.character.character_description,
         background: req.body.character.background,
-        owner: req.user.id
+        // owner: req.user.id 
+            //uncomment when user model/controller is defined
     }
     Character.create(characterCreate)
         .then(character => res.status(200).json({
@@ -24,7 +31,7 @@ router.post('/create', validateSession, (req, res) => {
 });
 
 //*CHARACTER UPDATES
-router.put('/:id', validateSession, (req, res) => {
+router.put('/:id', /*validateSession,*/ (req, res) => {
     const updateCharacter = {
         project_name: req.body.character.project_name,
         name: req.body.character.name,
@@ -35,7 +42,7 @@ router.put('/:id', validateSession, (req, res) => {
         background: req.body.character.background
     };
 
-    const query = {where: {id: req.params.id, owner_id: req.user.id}};
+    const query = {where: {id: req.params.id, owner: req.user.id}};
 
     Character.update(updateCharacter, query)
         .then((characters) => res.status(200).json({
@@ -44,3 +51,5 @@ router.put('/:id', validateSession, (req, res) => {
         }))
         .catch((err) => res.status(500).json({ error: err }))
 })
+
+module.exports = router

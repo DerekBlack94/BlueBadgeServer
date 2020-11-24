@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const Character = sequelize.define('log', {
+    const Character = sequelize.define('character', {
         project_name: {
             type: DataTypes.STRING,
             allowNull:  true
@@ -31,6 +31,6 @@ module.exports = (sequelize, DataTypes) => {
         owner: {
             type: DataTypes.INTEGER
         }
-    })
+    });
     return Character;
-}
+};
