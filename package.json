@@ -1,30 +1,25 @@
 {
-  "name": "bluebadgeserver",
+  "name": "node-modules-server",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Journal",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DerekBlack94/BlueBadgeServer.git"
-  },
-  "author": "",
+  "author": "YOUR NAME HERE",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/DerekBlack94/BlueBadgeServer/issues"
+  "devDependencies": {
+    "nodemon": "^1.19.4"
   },
-  "homepage": "https://github.com/DerekBlack94/BlueBadgeServer#readme",
   "dependencies": {
-    "@material-ui/core": "^4.11.0",
     "bcryptjs": "^2.4.3",
-    "bootstrap": "^4.5.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
-    "reactstrap": "^8.7.1"
+    "sequelize": "^5.21.1"
   }
 }
