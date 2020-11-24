@@ -1,5 +1,5 @@
 
-const Sequelize = require('sequelize');
+/*const Sequelize = require('sequelize');
 const sequelize = new Sequelize('character-creation', 'postgres', 'ThisIsAnOgre23', {
     host: 'localhost',
     dialect: 'postgres'
@@ -12,9 +12,9 @@ sequelize.authenticate().then(
     (err) => {
         console.log(err);
     }
-);
+);*/
 
-module.exports = sequelize;
+// module.exports = sequelize;
 
 const {Sequelize} = require('sequelize');
 
