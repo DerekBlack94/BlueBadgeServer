@@ -53,16 +53,31 @@ router.put('/:id', /*validateSession,*/ (req, res) => {
 
 
 router.get("/", (req, res) =>{
-    Character.findAll()
+    Character.findAll(/*{
+        where: { owner_id: userid }
+    }*/)
     .then(character => res.status(200).json(character))
     .catch(err => res.status(500).json({
         error: err
     }))
 })
 
-router.get('/:characterName', (req, res) => {
-    Character.findOne({ where: { character: req.params.character }})
-        .then(character => res.status(200).json(character))
+router.get('/project/:project_name', (req, res) => {
+    Character.findAll({ where: { project_name: req.params.project_name }})
+        .then(character => res.status(200).json({
+            character,
+            message: "All characters from this project have been retrieved."
+        }))
+        .catch(err => res.status(500).json({ error: err }))
+
+})
+
+router.get('/name/:name', (req, res) => {
+    Character.findOne({ where: { name: req.params.name }})
+        .then(character => res.status(200).json({
+            character,
+            message: "The character by this name has been retrieved."
+        }))
         .catch(err => res.status(500).json({ error: err}))
 })
 
