@@ -1,3 +1,4 @@
+
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('character-creation', 'postgres', 'ThisIsAnOgre23', {
     host: 'localhost',
@@ -14,3 +15,10 @@ sequelize.authenticate().then(
 );
 
 module.exports = sequelize;
+
+const {Sequelize} = require('sequelize');
+
+const db = new Sequelize(process.env.DB_CONNECTION_STRING);
+
+module.exports = db;
+
