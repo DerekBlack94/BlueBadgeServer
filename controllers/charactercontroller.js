@@ -51,7 +51,7 @@ router.put('/:id', /*validateSession,*/ (req, res) => {
 
 
 
-
+//*GET ALL CHARACTERS BY THIS USER
 router.get("/", (req, res) =>{
     Character.findAll(/*{
         where: { owner_id: userid }
@@ -62,6 +62,7 @@ router.get("/", (req, res) =>{
     }))
 })
 
+//*GET ALL CHARACTERS FROM THIS PROJECT
 router.get('/project/:project_name', (req, res) => {
     Character.findAll({ where: { project_name: req.params.project_name }})
         .then(character => res.status(200).json({
@@ -72,6 +73,7 @@ router.get('/project/:project_name', (req, res) => {
 
 })
 
+//*GET A CHARACTER BY THIS NAME
 router.get('/name/:name', (req, res) => {
     Character.findOne({ where: { name: req.params.name }})
         .then(character => res.status(200).json({
