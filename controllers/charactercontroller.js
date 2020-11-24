@@ -7,6 +7,7 @@ router.get('/practice', function(req, res){
     res.send('message')
 })
 
+
 //uncomment validateSession when that file is complete & user tokens are set up
 
 //*CHARACTER CREATE
@@ -42,7 +43,8 @@ router.put('/:id', /*validateSession,*/ (req, res) => {
         background: req.body.character.background
     };
 
-    const query = {where: {id: req.params.id, owner: req.user.id}};
+    //Uncomment req.user.id when User is done
+    const query = {where: {id: req.params.id, /*owner: req.user.id*/}};
 
     Character.update(updateCharacter, query)
         .then((characters) => res.status(200).json({
