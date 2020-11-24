@@ -1,4 +1,3 @@
-
 let express = require('express');
 let router = express.Router();
 let validateSession = require('../middleware/validate-session');
@@ -52,6 +51,7 @@ router.put('/:id', /*validateSession,*/ (req, res) => {
 
 
 
+
 router.get("/", (req, res) =>{
     Character.findAll()
     .then(character => res.status(200).json(character))
@@ -62,8 +62,8 @@ router.get("/", (req, res) =>{
 
 router.get('/:characterName', (req, res) => {
     Character.findOne({ where: { character: req.params.character }})
-      .then(character => res.status(200).json(character))
-      .catch(err => res.status(500).json({ error: err}))
+        .then(character => res.status(200).json(character))
+        .catch(err => res.status(500).json({ error: err}))
 })
 
 
