@@ -1,12 +1,8 @@
+
 let express = require('express');
 let router = express.Router();
 let validateSession = require('../middleware/validate-session');
 const Character = require('../db').import('../models/character');
-
-router.get('/practice', function(req, res){
-    res.send('message')
-})
-
 
 //uncomment validateSession when that file is complete & user tokens are set up
 
@@ -53,5 +49,22 @@ router.put('/:id', /*validateSession,*/ (req, res) => {
         }))
         .catch((err) => res.status(500).json({ error: err }))
 })
+
+
+
+router.get("/", (req, res) =>{
+    Character.findAll()
+    .then(character => res.status(200).json(character))
+    .catch(err => res.status(500).json({
+        error: err
+    }))
+})
+
+router.get('/:characterName', (req, res) => {
+    Character.findOne({ where: { character: req.params.character }})
+      .then(character => res.status(200).json(character))
+      .catch(err => res.status(500).json({ error: err}))
+})
+
 
 module.exports = router
