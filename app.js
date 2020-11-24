@@ -17,12 +17,13 @@ app.use('/character', character);
 
 app.use('/user', user);
 
+db.authenticate()
+.then(() => db.sync()) // => {force,ture}
+.then(() => {
+    app.listen(process.env.PORT, () => console.log(`[Server: ] App is listing on Port ${process.env.PORT}`));
 
-app.use('/test', function(req, res){
-    res.send("message")
 })
-
-
-app.listen(3000, () => {
-    console.log('App is listening on port 3000.');
+.catch((err) =>{
+    console.log("[server:] Crashed!");
+    console.error(err);
 })
