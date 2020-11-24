@@ -2,6 +2,7 @@ require("dotenv").config();
 let express = require('express');
 let app = express();
 let sequelize = require('./db');
+let db = require('./db');
 
 
 let character = require('./controllers/charactercontroller');
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use('/character', character);
 
 app.use('/user', user);
+
 
 db.authenticate()
 .then(() => db.sync()) // => {force,ture}
