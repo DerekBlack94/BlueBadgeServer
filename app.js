@@ -1,4 +1,5 @@
-require("dotenv").config();
+
+require('dotenv').config();
 let express = require('express');
 let app = express();
 let sequelize = require('./db');
@@ -20,7 +21,7 @@ app.use('/user', user);
 
 
 db.authenticate()
-.then(() => db.sync()) // => {force,ture}
+.then(() => db.sync()) // => {force : true}
 .then(() => {
     app.listen(process.env.PORT, () => console.log(`[Server: ] App is listing on Port ${process.env.PORT}`));
 
