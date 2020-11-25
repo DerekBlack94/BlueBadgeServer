@@ -49,6 +49,7 @@ router.put('/:id', validateSession, (req, res) => {
         .catch((err) => res.status(500).json({ error: err }))
 })
 
+
 //*GET ALL CHARACTERS BY THIS USER
 router.get("/", validateSession, (req, res) =>{
     let userid = req.user.id
