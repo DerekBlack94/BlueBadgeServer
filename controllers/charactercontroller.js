@@ -63,7 +63,6 @@ router.get("/", validateSession, (req, res) =>{
     }))
 })
 
-
 //*GET ALL CHARACTERS FROM THIS PROJECT
 router.get('/project/:project_name', validateSession, (req, res) => {
     Character.findAll({ where: { project_name: req.params.project_name }})
