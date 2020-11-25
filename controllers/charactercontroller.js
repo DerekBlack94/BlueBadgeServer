@@ -49,28 +49,11 @@ router.put('/:id', validateSession, (req, res) => {
         .catch((err) => res.status(500).json({ error: err }))
 })
 
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
-
 
 //*GET ALL CHARACTERS BY THIS USER
-
 router.get("/", validateSession, (req, res) =>{
     let userid = req.user.id
 
-=======
-//*GET ALL CHARACTERS BY THIS USER
-router.get("/", validateSession, (req, res) =>{
-    let userid = req.user.id
-    
->>>>>>> d23758b47189040943d27d7ede812b2837703891
     Character.findAll({
         where: { owner: userid }
     })
@@ -105,11 +88,7 @@ router.get('/name/:name', validateSession, (req, res) => {
 //*DELETE A CHARACTER
 router.delete("/:id", validateSession, (req, res) => {
     const query = { where: { id: req.params.id, owner: req.user.id} };
-<<<<<<< HEAD
-
-=======
->>>>>>> d23758b47189040943d27d7ede812b2837703891
-
+    
     Character.destroy(query)
     .then(() => res.status(200).json({ message: "Character Entry Removed"}))
     .catch((err) => res.status(500).json({ error: err}));
