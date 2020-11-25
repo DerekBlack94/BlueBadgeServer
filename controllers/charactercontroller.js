@@ -49,37 +49,12 @@ router.put('/:id', validateSession, (req, res) => {
         .catch((err) => res.status(500).json({ error: err }))
 })
 
-//*GET ALL CHARACTERS BY THIS USER
-// router.get("/", (req, res) =>{
-//     Character.findAll({
-//         where: { owner_id: userid }
-//     })
-//     .then(character => res.status(200).json(character))
-//     .catch(err => res.status(500).json({
-//         error: err
-//     }))
-// })
 
-//*GET ALL CHARACTERS FROM THIS PROJECT
-router.get('/project/:project_name', (req, res) => {
-    Character.findAll({ where: { project_name: req.params.project_name }})
-        .then(character => res.status(200).json({
-            character,
-            message: "All characters from this project have been retrieved."
-        }))
-        .catch(err => res.status(500).json({ error: err }))
 
-})
 
-//*GET A CHARACTER BY THIS NAME
-router.get('/name/:name', (req, res) => {
-    Character.findOne({ where: { name: req.params.name }})
-        .then(character => res.status(200).json({
-            character,
-            message: "The character by this name has been retrieved."
-        }))
-        .catch(err => res.status(500).json({ error: err}))
-})
+
+
+
 
 
 
@@ -97,15 +72,7 @@ router.get("/", validateSession, (req, res) =>{
         error: err
     }))
 })
-// router.get("/", validateSession, (req, res) =>{
-//     Character.findAll({
-//         where: { id: req.params.id,  }
-//     })
-//     .then(character => res.status(200).json(character))
-//     .catch(err => res.status(500).json({
-//         error: err
-//     }))
-// })
+
 
 //*GET ALL CHARACTERS FROM THIS PROJECT
 router.get('/project/:project_name', validateSession, (req, res) => {
