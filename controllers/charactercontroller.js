@@ -49,13 +49,12 @@ router.put('/:id', validateSession, (req, res) => {
         .catch((err) => res.status(500).json({ error: err }))
 })
 
-
-
-
 //*GET ALL CHARACTERS BY THIS USER
-router.get("/", (req, res) =>{
+router.get("/", validateSession, (req, res) =>{
+    let userid = req.user.id
+    
     Character.findAll({
-        where: { owner_id: userid }
+        where: { owner: userid }
     })
     .then(character => res.status(200).json(character))
     .catch(err => res.status(500).json({
