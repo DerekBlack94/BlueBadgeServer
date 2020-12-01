@@ -28,6 +28,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.TEXT,
             allowNull: true
         },
+        image: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
         owner: {
             type: DataTypes.INTEGER
         }
