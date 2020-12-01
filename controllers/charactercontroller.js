@@ -51,10 +51,11 @@ router.put('/:id', validateSession, (req, res) => {
         .catch((err) => res.status(500).json({ error: err }))
 })
 
+
 //*GET ALL CHARACTERS BY THIS USER
 router.get("/", validateSession, (req, res) =>{
     let userid = req.user.id
-    
+
     Character.findAll({
         where: { owner: userid }
     })
@@ -64,8 +65,9 @@ router.get("/", validateSession, (req, res) =>{
     }))
 })
 
+
 //*GET ALL CHARACTERS FROM THIS PROJECT
-router.get('/project/:project_name', (req, res) => {
+router.get('/project/:project_name', validateSession, (req, res) => {
     Character.findAll({ where: { project_name: req.params.project_name }})
         .then(character => res.status(200).json({
             character,
@@ -76,7 +78,7 @@ router.get('/project/:project_name', (req, res) => {
 })
 
 //*GET A CHARACTER BY THIS NAME
-router.get('/name/:name', (req, res) => {
+router.get('/name/:name', validateSession, (req, res) => {
     Character.findOne({ where: { name: req.params.name }})
         .then(character => res.status(200).json({
             character,
@@ -88,7 +90,7 @@ router.get('/name/:name', (req, res) => {
 //*DELETE A CHARACTER
 router.delete("/:id", validateSession, (req, res) => {
     const query = { where: { id: req.params.id, owner: req.user.id} };
-
+    
     Character.destroy(query)
     .then(() => res.status(200).json({ message: "Character Entry Removed"}))
     .catch((err) => res.status(500).json({ error: err}));
