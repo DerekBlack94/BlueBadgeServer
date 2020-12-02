@@ -15,6 +15,7 @@ router.post('/create', validateSession, (req, res) => {
         gender: req.body.character.gender,
         character_description: req.body.character.character_description,
         background: req.body.character.background,
+        image: req.body.character.image,
         owner: req.user.id 
             //uncomment when user model/controller is defined
     }
@@ -35,7 +36,8 @@ router.put('/:id', validateSession, (req, res) => {
         race: req.body.character.race,
         gender: req.body.character.gender,
         character_description: req.body.character.character_description,
-        background: req.body.character.background
+        background: req.body.character.background,
+        image: req.body.character.image,
     };
 
     //Uncomment req.user.id when User is done
