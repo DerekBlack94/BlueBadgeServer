@@ -53,6 +53,7 @@ router.put('/:id', validateSession, (req, res) => {
 
 
 //*GET ALL CHARACTERS BY THIS USER
+
 router.get("/", validateSession, (req, res) =>{
     let userid = req.user.id
 
@@ -90,7 +91,8 @@ router.get('/name/:name', validateSession, (req, res) => {
 //*DELETE A CHARACTER
 router.delete("/:id", validateSession, (req, res) => {
     const query = { where: { id: req.params.id, owner: req.user.id} };
-    
+
+
     Character.destroy(query)
     .then(() => res.status(200).json({ message: "Character Entry Removed"}))
     .catch((err) => res.status(500).json({ error: err}));
